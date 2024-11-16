@@ -1,5 +1,4 @@
-import { menuList } from '@/app/constants/menus';
-export default function Header() {
+export default function Header({ list }: { list: any[] }) {
     return (
         <header className="bg-white dark:bg-gray-900">
             <div className="mx-auto flex h-16 max-w-screen-xl items-center gap-8 px-4 sm:px-6 lg:px-8">
@@ -21,13 +20,13 @@ export default function Header() {
                 <div className="flex flex-1 items-center justify-end md:justify-between">
                     <nav aria-label="Global" className="hidden md:block">
                         <ul className="flex items-center gap-6 text-sm">
-                            {menuList.map(item => (
-                                <li key={item.key}>
+                            {list?.map(item => (
+                                <li key={item.id}>
                                     <a
-                                        className="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
-                                        href={`/${item.key}`}
+                                        className="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75 "
+                                        href={`/${item.category_type?.toLowerCase()}`}
                                     >
-                                        {item.label}
+                                        {item.name}
                                     </a>
                                 </li>
                             ))}

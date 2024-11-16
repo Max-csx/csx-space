@@ -3,7 +3,7 @@ import localFont from 'next/font/local';
 import './globals.css';
 import Header from './components/header';
 import Footer from './components/footer';
-
+import { createClient } from '@/app/utils/supabase/server';
 // 字体
 const geistSans = localFont({
     src: './fonts/GeistVF.woff',
@@ -23,15 +23,21 @@ export const metadata: Metadata = {
 };
 
 // 全局布局layout
-export default function RootLayout({
+export default async function RootLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;
 }>) {
+    const supabase = await createClient();
+
+    let { data: categories, error } = await supabase
+        .from('categories')
+        .select('*')
+        .order('id', { ascending: true });
     return (
         <html lang="en">
             <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-                <Header />
+                <Header list={categories} />
                 {children}
                 <Footer />
             </body>

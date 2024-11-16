@@ -1,3 +1,5 @@
+import Banner from '../components/banner';
 export default async function App() {
-    return <div>首页</div>;
+    return <Banner />;
 }
+
