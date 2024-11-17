@@ -34,10 +34,12 @@ export default async function RootLayout({
         .from('categories')
         .select('*')
         .order('id', { ascending: true });
+
+    const list = [{ id: -1, name: '首页', category_type: 'home' }, ...(categories || [])];
     return (
         <html lang="en">
             <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-                <Header list={categories} />
+                <Header list={list} />
                 {children}
                 <Footer />
             </body>
