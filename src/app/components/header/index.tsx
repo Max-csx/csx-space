@@ -2,7 +2,7 @@ export default function Header({ list }: { list: any[] }) {
     return (
         <header className="bg-white dark:bg-gray-900">
             <div className="mx-auto flex h-16 max-w-screen-xl items-center gap-8 px-4 sm:px-6 lg:px-8">
-                <a className="block text-teal-600 dark:text-teal-300" href="#">
+                <a className="block text-indigo-600 dark:text-indigo-300" href="#">
                     <span className="sr-only">Home</span>
                     <svg
                         className="h-8"
@@ -36,14 +36,14 @@ export default function Header({ list }: { list: any[] }) {
                     <div className="flex items-center gap-4">
                         <div className="sm:flex sm:gap-4">
                             <a
-                                className="block rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-teal-700 dark:hover:bg-teal-500"
+                                className="block rounded-md bg-indigo-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-indigo-700 dark:hover:bg-indigo-500"
                                 href="/login"
                             >
                                 Login
                             </a>
 
                             <a
-                                className="hidden rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 transition hover:text-teal-600/75 sm:block dark:bg-gray-800 dark:text-white dark:hover:text-white/75"
+                                className="hidden rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-indigo-600 transition hover:text-indigo-600/75 sm:block dark:bg-gray-800 dark:text-white dark:hover:text-white/75"
                                 href="/register"
                             >
                                 Register

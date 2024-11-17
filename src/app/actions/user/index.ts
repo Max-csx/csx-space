@@ -3,27 +3,42 @@ import { createClient } from '@/app/utils/supabase/server';
 import { redirect } from 'next/navigation';
 import { z } from 'zod';
 
+type ErrorState = {
+    errors?: {
+        email?: string;
+        password?: string;
+    };
+    message?: string | null;
+};
+
 const schema = z.object({
     email: z.string({
-        invalid_type_error: 'Invalid Email',
-    }),
+        invalid_type_error: 'email必须是字符串',
+    })
+        .email({
+            message: 'Invalid Email',
+        }),
     password: z.string({
         invalid_type_error: 'Invalid Password',
     }),
 });
 
-export async function createUser(formData: FormData) {
+// todo 注册各各字段校验
+
+export async function createUser(prevState: ErrorState, formData: FormData) {
+    console.log(formData, 'formData');
     const email = formData.get('email');
     const password = formData.get('password');
     const validatedFields = schema.safeParse({
         email,
         password,
-    });
+    }) 
 
     // 如果验证失败，直接返回错误
     if (!validatedFields.success) {
         return {
             errors: validatedFields.error.flatten().fieldErrors,
+            message: '创建账号失败',
         };
     }
 
